@@ -1,376 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Ridu · Backend Engineering (Python/C)</title>
-  <!-- Google Fonts & simple reset -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ridu | Software Engineer Intern</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f8fafc;
-      color: #0a0c10;
-      line-height: 1.5;
-      scroll-behavior: smooth;
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0b0b0b;
+      color:white;
+      overflow-x:hidden;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+    body::before{
+      content:"";
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#00e1ff18;
+      filter:blur(120px);
+      top:-150px;
+      right:-100px;
+      z-index:-1;
     }
 
-    /* header / hero */
-    .hero {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 2rem;
+    body::after{
+      content:"";
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:#ffffff10;
+      filter:blur(100px);
+      bottom:-120px;
+      left:-100px;
+      z-index:-1;
     }
 
-    .badge {
-      display: inline-block;
-      background: #e6f0ff;
-      color: #0751c3;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      margin-bottom: 1rem;
+    nav{
+      width:100%;
+      padding:20px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      backdrop-filter:blur(10px);
+      background:#00000050;
+      z-index:1000;
+      border-bottom:1px solid #1c1c1c;
     }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #0f172a, #2563eb);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 0.75rem;
+    .logo{
+      font-size:1.2rem;
+      font-weight:700;
+      color:#00e1ff;
     }
 
-    .highlight {
-      color: #1e40af;
-      border-left: 4px solid #2563eb;
-      padding-left: 1rem;
-      font-weight: 500;
-      margin: 1rem 0;
+    nav ul{
+      display:flex;
+      gap:25px;
+      list-style:none;
     }
 
-    .intro-text {
-      font-size: 1.2rem;
-      color: #1e293b;
-      max-width: 85%;
-      margin: 1rem 0;
+    nav a{
+      text-decoration:none;
+      color:white;
+      transition:.3s;
     }
 
-    .tagline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0 0.5rem;
+    nav a:hover{
+      color:#00e1ff;
     }
 
-    .pill {
-      background: #eef2ff;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #1e3a8a;
+    header{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 10%;
     }
 
-    /* section titles */
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin: 2rem 0 1rem 0;
-      letter-spacing: -0.01em;
-      border-left: 4px solid #2563eb;
-      padding-left: 1rem;
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
     }
 
-    /* skills grid */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0 0.5rem;
+    .hero-text h3{
+      color:#00e1ff;
+      margin-bottom:10px;
+      font-weight:500;
     }
 
-    .skill-card {
-      background: white;
-      border-radius: 2rem;
-      padding: 0.6rem 1.4rem;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      border: 1px solid #e2e8f0;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .hero-text h1{
+      font-size:4rem;
+      line-height:1.1;
+      margin-bottom:20px;
     }
 
-    .skill-card:hover {
-      border-color: #2563eb;
-      transform: translateY(-2px);
+    .hero-text p{
+      color:#c7c7c7;
+      margin-bottom:30px;
+      max-width:500px;
     }
 
-    .skill-icon {
-      font-size: 1.2rem;
+    .buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
     }
 
-    /* projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin: 1.5rem 0 1rem;
+    .btn{
+      padding:12px 24px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
     }
 
-    .project-card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid #e2e8f0;
-      transition: 0.2s;
-      box-shadow: 0 4px 6px -2px rgba(0,0,0,0.02);
+    .primary{
+      background:#00e1ff;
+      color:black;
     }
 
-    .project-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
+    .secondary{
+      border:1px solid #2b2b2b;
+      color:white;
+      background:#151515;
     }
 
-    .project-card p {
-      color: #334155;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
+    .btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 25px #00e1ff25;
     }
 
-    .tech-tag {
-      background: #f1f5f9;
-      padding: 0.2rem 0.7rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #0f172a;
-      display: inline-block;
-      margin-right: 0.5rem;
+    .hero-card{
+      background:linear-gradient(145deg,#131313,#1d1d1d);
+      border:1px solid #2a2a2a;
+      border-radius:24px;
+      padding:30px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 10px 40px #00000050;
     }
 
-    .learning-note {
-      background: #f1f4f9;
-      border-radius: 1.2rem;
-      padding: 1rem 1.5rem;
-      margin: 1.5rem 0;
-      border-left: 3px solid #2563eb;
-      font-weight: 500;
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      background:#00e1ff25;
+      border-radius:50%;
+      top:-60px;
+      right:-60px;
+      filter:blur(20px);
     }
 
-    .contact-links {
-      background: #ffffffdd;
-      backdrop-filter: blur(4px);
-      border-radius: 2rem;
-      padding: 1.5rem 2rem;
-      margin: 2rem 0 1rem;
-      border: 1px solid #cbd5e1;
-      text-align: center;
+    .code{
+      font-family:monospace;
+      color:#d7d7d7;
+      line-height:2;
     }
 
-    .contact-flex {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.8rem;
-      margin-top: 1rem;
+    .blue{
+      color:#00e1ff;
     }
 
-    .contact-item {
-      text-decoration: none;
-      font-weight: 500;
-      color: #1e293b;
-      background: #f8fafc;
-      padding: 0.5rem 1.2rem;
-      border-radius: 3rem;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid #e2e8f0;
+    .purple{
+      color:#b388ff;
     }
 
-    .contact-item:hover {
-      background: #2563eb;
-      color: white;
-      border-color: #2563eb;
+    section{
+      padding:100px 10%;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e2e8f0;
-      color: #475569;
-      font-size: 0.85rem;
+    .section-title{
+      font-size:2.3rem;
+      margin-bottom:15px;
     }
 
-    @media (max-width: 680px) {
-      .container {
-        padding: 1.5rem;
+    .section-sub{
+      color:#b9b9b9;
+      margin-bottom:40px;
+    }
+
+    .skills{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:20px;
+    }
+
+    .skill{
+      background:#141414;
+      border:1px solid #252525;
+      padding:25px;
+      border-radius:18px;
+      text-align:center;
+      transition:.3s;
+    }
+
+    .skill:hover{
+      transform:translateY(-6px);
+      border-color:#00e1ff;
+      background:#191919;
+    }
+
+    .skill h3{
+      margin-top:10px;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .project{
+      background:#141414;
+      border:1px solid #252525;
+      padding:25px;
+      border-radius:22px;
+      transition:.3s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .project:hover{
+      transform:translateY(-8px);
+      border-color:#00e1ff;
+    }
+
+    .project::after{
+      content:"↗";
+      position:absolute;
+      top:20px;
+      right:20px;
+      font-size:1.2rem;
+      color:#00e1ff;
+    }
+
+    .project p{
+      color:#bdbdbd;
+      margin-top:10px;
+    }
+
+    .contact-box{
+      background:linear-gradient(145deg,#101010,#191919);
+      border:1px solid #252525;
+      padding:40px;
+      border-radius:24px;
+      text-align:center;
+    }
+
+    .contact-box p{
+      color:#c9c9c9;
+      margin:10px 0;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#8d8d8d;
+      border-top:1px solid #1d1d1d;
+    }
+
+    .typing{
+      color:#00e1ff;
+    }
+
+    @media(max-width:900px){
+
+      .hero{
+        grid-template-columns:1fr;
       }
-      h1 {
-        font-size: 2.2rem;
+
+      .hero-text h1{
+        font-size:3rem;
       }
-      .intro-text {
-        max-width: 100%;
+
+      nav{
+        padding:20px 6%;
+      }
+
+      section{
+        padding:80px 6%;
       }
     }
 
-    .status-badge {
-      background: #dcfce7;
-      color: #15803d;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.2rem 1rem;
-      display: inline-block;
+    @media(max-width:600px){
+
+      nav ul{
+        display:none;
+      }
+
+      .hero-text h1{
+        font-size:2.4rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <!-- Hero section / header -->
-  <div class="hero">
-    <div class="badge">⚡ backend · systems thinking</div>
-    <h1>Ridu · Future Software Engineer</h1>
-    <div class="tagline">
-      <span class="pill">🐍 Python primary</span>
-      <span class="pill">⚙️ C (low-level focus)</span>
-      <span class="pill">🗄️ backend architecture</span>
-      <span class="pill">🔧 software engineering</span>
-    </div>
-    <p class="intro-text">
-      CSE student passionate about building efficient backend systems, solving algorithmic problems, 
-      and writing clean, maintainable code. Currently deepening my knowledge of <strong>C</strong> to understand 
-      memory management and systems programming. Actively seeking <strong>backend/SWE internship</strong> opportunities.
-    </p>
-    <div class="status-badge">🎯 Open for Software Engineering Internships (Backend focus)</div>
-  </div>
+  <nav>
+    <div class="logo">Ridu.dev</div>
 
-  <!-- developer / engineer object - updated to match backend & C/Python story -->
-  <div class="learning-note">
-    <strong>🧑‍💻 const engineer = {</strong><br/>
-    &nbsp;&nbsp;name: "Ridu",<br/>
-    &nbsp;&nbsp;role: "Aspiring Backend Engineer",<br/>
-    &nbsp;&nbsp;core_languages: ["Python", "C (learning)"],<br/>
-    &nbsp;&nbsp;tools: ["Git", "CLI", "Data Structures", "SQL"],<br/>
-    &nbsp;&nbsp;building: "Backend projects with Python & systems with C",<br/>
-    &nbsp;&nbsp;status: "Open to SWE/Backend Internships"<br/>
-    <strong>};</strong>
-  </div>
-
-  <!-- Skills section (backend oriented, remove frontend overemphasis) -->
-  <div class="section-title">⚡ Core & growing skills</div>
-  <div class="skills-grid">
-    <div class="skill-card"><span class="skill-icon">🐍</span> Python (primary)</div>
-    <div class="skill-card"><span class="skill-icon">⚙️</span> C (active learning)</div>
-    <div class="skill-card"><span class="skill-icon">🧠</span> DSA & Algorithms</div>
-    <div class="skill-card"><span class="skill-icon">🐙</span> Git & GitHub</div>
-    <div class="skill-card"><span class="skill-icon">💻</span> CLI / Scripting</div>
-    <div class="skill-card"><span class="skill-icon">🗄️</span> SQL (PostgreSQL/SQLite)</div>
-    <div class="skill-card"><span class="skill-icon">🔧</span> Problem Solving</div>
-    <div class="skill-card"><span class="skill-icon">📄</span> Version Control</div>
-  </div>
-  <p style="font-size: 0.85rem; margin-top: 0.5rem; color: #334155;">⚡ Currently expanding: backend architectures, Unix fundamentals, and low-level memory concepts in C.</p>
-
-  <!-- Projects section with Backend-detail rewrite -->
-  <div class="section-title">🚀 Projects (backend thinking)</div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <h3>📚 Student Management System</h3>
-      <p>CRUD web app with local storage — designed data models, implemented record logic and filtering. Explored client-side state management and modular JavaScript. <strong>Next step:</strong> migrate to SQLite + Python backend.</p>
-      <div><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">localStorage</span></div>
-    </div>
-    <div class="project-card">
-      <h3>✅ Task Tracker (CLI & Web)</h3>
-      <p>Minimal productivity tool with priority sorting and persistent storage. Practiced modular code, separation of concerns, and task queue logic. Built-in data validation and export feature.</p>
-      <div><span class="tech-tag">JavaScript</span><span class="tech-tag">localStorage API</span><span class="tech-tag">UX logic</span></div>
-    </div>
-    <div class="project-card">
-      <h3>🌐 Personal Portfolio (Backend narrative)</h3>
-      <p>Responsive, semantic HTML/CSS site with focus on maintainability. Includes CLI-inspired contact section and engineer object. Serves as developer brand for backend roles.</p>
-      <div><span class="tech-tag">HTML5</span><span class="tech-tag">CSS Grid/Flex</span><span class="tech-tag">GitHub Pages</span></div>
-    </div>
-  </div>
-
-  <!-- Additional upcoming projects: backend specific -->
-  <div style="margin: 1rem 0 0.5rem;">
-    <p style="font-weight: 500;">🔨 <strong>What's next (backend engineering track):</strong></p>
-    <ul style="margin-left: 1.5rem; color: #1e293b;">
-      <li>Python CLI tool for log analysis / file organizer</li>
-      <li>SQL-based student database (replace local storage with PostgreSQL)</li>
-      <li>Simple REST API simulation with Flask + in-memory store</li>
-      <li>Low-level exercises in C: pointers, dynamic memory, buffer manipulation</li>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </div>
+  </nav>
 
-  <!-- Focus section: future C & Backend learning -->
-  <div class="section-title">📖 Currently focusing</div>
-  <div class="learning-note" style="background: #eef2ff;">
-    🧠 <strong>Data Structures in Python</strong> (advanced) + <strong>C language roadmap</strong><br/>
-    Mastering memory management, pointers, structs, and systems programming fundamentals. <br/>
-    🔍 Seeking <strong>backend engineering internships</strong> where I can apply Python, problem-solving, and grow into systems-level engineering.
-  </div>
+  <header>
 
-  <!-- Let's connect + resume CTA -->
-  <div class="contact-links">
-    <h3 style="font-weight: 600; margin-bottom: 0.75rem;">📫 Let's collaborate</h3>
-    <p style="margin-bottom: 1rem;">Interested in backend, systems, or Python engineering roles — open to mentorship & intern positions.</p>
-    <div class="contact-flex">
-      <a href="mailto:fi.redham16@gmail.com" class="contact-item">📧 fi.redham16@gmail.com</a>
-      <a href="https://github.com/redhain" target="_blank" rel="noopener" class="contact-item">🐙 GitHub/redhain</a>
-      <a href="https://linkedin.com/in/faizul-islam-redham" target="_blank" rel="noopener" class="contact-item">🔗 LinkedIn</a>
+    <div class="hero">
+
+      <div class="hero-text">
+
+        <h3>👋 Hello There</h3>
+
+        <h1>
+          Future <span class="typing"></span>
+        </h1>
+
+        <p>
+          I'm a CSE student passionate about building modern web
+          applications, solving problems, and turning caffeine into code ☕
+          Currently looking for internship opportunities where I can grow
+          as a software engineer.
+        </p>
+
+        <div class="buttons">
+          <a href="#contact" class="btn primary">Hire Me</a>
+          <a href="#projects" class="btn secondary">View Projects</a>
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <div class="code">
+          <span class="purple">const</span> developer = { <br><br>
+
+          &nbsp;&nbsp;name:
+          <span class="blue">"Ridu"</span>,<br>
+
+          &nbsp;&nbsp;role:
+          <span class="blue">"Software Engineer Intern"</span>,<br>
+
+          &nbsp;&nbsp;skills: [
+          <span class="blue">"HTML"</span>,
+          <span class="blue">"CSS"</span>,
+          <span class="blue">"JavaScript"</span>
+          ],<br>
+
+          &nbsp;&nbsp;currentlyLearning:
+          <span class="blue">"Full Stack Development"</span>,<br>
+
+          &nbsp;&nbsp;status:
+          <span class="blue">"Open to Internship"</span><br><br>
+
+          };
+        </div>
+
+      </div>
+
     </div>
-    <p style="margin-top: 1.2rem; font-size: 0.9rem;">📄 <strong>Resume available upon request</strong> — feel free to reach out for detailed experience & coursework.</p>
-  </div>
+
+  </header>
+
+  <section id="skills">
+
+    <h2 class="section-title">Skills ⚡</h2>
+    <p class="section-sub">
+      Technologies I use to build and learn cool things.
+    </p>
+
+    <div class="skills">
+
+      <div class="skill">
+        <h3>HTML5/CSS3</h3>
+      </div>
+
+      <div class="skill">
+        <h3>Python</h3>
+      </div>
+
+      <div class="skill">
+        <h3>JavaScript</h3>
+      </div>
+
+      <div class="skill">
+        <h3>C/C++</h3>
+      </div>
+
+      <div class="skill">
+        <h3>GitHub</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="projects">
+
+    <h2 class="section-title">Projects 🚀</h2>
+
+    <p class="section-sub">
+      A few things I've built while exploring software development.
+    </p>
+
+    <div class="projects">
+
+      <div class="project">
+        <h3>Student Management System</h3>
+
+        <p>
+          A CRUD-based web app to manage student records with local storage.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Task Tracker App</h3>
+
+        <p>
+          Minimal productivity app for managing daily tasks and goals.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Personal Portfolio</h3>
+
+        <p>
+          Responsive portfolio website designed with modern UI principles.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="contact">
+
+    <div class="contact-box">
+
+      <h2 class="section-title">Let's Connect 🌙</h2>
+
+      <p>Email: fi.redham16@gmail.com</p>
+      <p>GitHub: github.com/redhain</p>
+      <p>LinkedIn: linkedin.com/faizul-islam-redham</p>
+
+    </div>
+
+  </section>
 
   <footer>
-    <span>✦ backend engineering portfolio · built with semantic HTML/CSS · Python & C focused ✦</span><br/>
-    <span style="font-size: 0.75rem;">redhain.github.io/portfolio — always iterating</span>
+    © 2026 Ridu • Built with HTML, CSS & JavaScript
   </footer>
-</div>
 
-<!-- optional micro-interaction: dynamic engineer log? subtle console greet for recruiter -->
-<script>
-  (function() {
-    // subtle console output for tech-minded visitors / recruiters
-    console.log("%c🔧 Ridu · Backend Engineering Portfolio", "color: #2563eb; font-size: 14px; font-weight: bold;");
-    console.log("%cPython primary · C learner · open to SWE internships", "color: #0f172a; font-size: 12px;");
-    const engineer = {
-      name: "Ridu",
-      role: "Aspiring Backend Engineer",
-      core_languages: ["Python", "C (learning)"],
-      tools: ["Git", "CLI", "Data Structures", "SQL"],
-      building: "Backend projects with Python & systems with C",
-      status: "Open to SWE/Backend Internships"
-    };
-    console.debug("📌 Engineer snapshot:", engineer);
-    // optional status indicator (for fun, no visual changes)
-    document.querySelectorAll('.status-badge').forEach(badge => {
-      if(badge.innerText.includes("Open")) badge.setAttribute("title", "Actively looking for backend internships");
-    });
-  })();
-</script>
+  <script>
+
+    const words = [
+      "Software Engineer",
+      "Backend Developer",
+      "Problem Solver",
+      "CSE Student"
+    ];
+
+    let i = 0;
+
+    const typing = document.querySelector(".typing");
+
+    function changeText(){
+      typing.textContent = words[i];
+      i = (i + 1) % words.length;
+    }
+
+    changeText();
+
+    setInterval(changeText, 2000);
+
+  </script>
+
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Ridu · Backend Engineering (Python/C)</title>
-  <!-- Google Fonts & simple reset -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <title>Ridu · dark backend • Python/C</title>
+  <!-- Google Fonts + Inter + Fira Code for terminal vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,176 +14,205 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f8fafc;
-      color: #0a0c10;
+      font-family: 'Inter', 'Fira Code', monospace;
+      background: #0b0e14;
+      background-image: radial-gradient(circle at 15% 30%, rgba(37, 99, 235, 0.08) 0%, rgba(0,0,0,0) 55%);
+      color: #eef2ff;
       line-height: 1.5;
       scroll-behavior: smooth;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.8rem;
     }
 
-    /* header / hero */
+    /* glass morphism cards with dark edges */
+    .hero, .skill-card, .project-card, .contact-links, .learning-note {
+      background: rgba(18, 22, 35, 0.75);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(56, 68, 98, 0.5);
+      transition: all 0.2s ease;
+    }
+
     .hero {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 2rem;
+      border-radius: 2rem;
+      padding: 2rem 2rem;
+      margin-bottom: 2.5rem;
+      background: rgba(12, 16, 28, 0.8);
+      border-bottom: 2px solid #2d3a5e;
     }
 
     .badge {
       display: inline-block;
-      background: #e6f0ff;
-      color: #0751c3;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
+      background: #1e293b;
+      color: #7aa9ff;
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: 'Fira Code', monospace;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      border: 0.5px solid #3b4b6e;
       margin-bottom: 1rem;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #0f172a, #2563eb);
+      background: linear-gradient(130deg, #cddeff, #7aa9ff, #a0c2ff);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
     }
 
     .highlight {
-      color: #1e40af;
-      border-left: 4px solid #2563eb;
+      border-left: 3px solid #3b82f6;
       padding-left: 1rem;
-      font-weight: 500;
-      margin: 1rem 0;
+      color: #bfd9ff;
     }
 
     .intro-text {
-      font-size: 1.2rem;
-      color: #1e293b;
-      max-width: 85%;
+      font-size: 1.15rem;
+      color: #cbd5e6;
+      max-width: 90%;
       margin: 1rem 0;
+      font-weight: 400;
     }
 
     .tagline {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0 0.5rem;
+      gap: 0.8rem;
+      margin: 1.2rem 0 0.8rem;
     }
 
     .pill {
-      background: #eef2ff;
+      background: #111827;
       padding: 0.3rem 1rem;
       border-radius: 40px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      color: #1e3a8a;
+      color: #b9d0ff;
+      border: 1px solid #2d3a5e;
+      font-family: 'Fira Code', monospace;
     }
 
-    /* section titles */
     .section-title {
       font-size: 1.8rem;
       font-weight: 600;
-      margin: 2rem 0 1rem 0;
-      letter-spacing: -0.01em;
-      border-left: 4px solid #2563eb;
+      margin: 2.2rem 0 1.2rem 0;
+      letter-spacing: -0.3px;
+      border-left: 4px solid #3b82f6;
       padding-left: 1rem;
+      color: #f0f3ff;
     }
 
-    /* skills grid */
+    /* skills grid dark */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin: 1.5rem 0 0.5rem;
+      margin: 1.2rem 0 0.8rem;
     }
 
     .skill-card {
-      background: white;
+      background: #0f1222e6;
       border-radius: 2rem;
       padding: 0.6rem 1.4rem;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      border: 1px solid #e2e8f0;
+      font-weight: 500;
+      font-size: 0.95rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid #293452;
       transition: all 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      color: #d9e6ff;
     }
 
     .skill-card:hover {
-      border-color: #2563eb;
+      border-color: #3b82f6;
+      background: #111a2cee;
       transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .skill-icon {
       font-size: 1.2rem;
+      filter: drop-shadow(0 0 2px #2e4a9a);
     }
 
-    /* projects */
+    /* projects dark grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 1.8rem;
-      margin: 1.5rem 0 1rem;
+      margin: 1.8rem 0 0.8rem;
     }
 
     .project-card {
-      background: white;
-      border-radius: 1.5rem;
+      background: rgba(16, 20, 32, 0.85);
+      border-radius: 1.8rem;
       padding: 1.5rem;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #2a3552;
       transition: 0.2s;
-      box-shadow: 0 4px 6px -2px rgba(0,0,0,0.02);
+    }
+
+    .project-card:hover {
+      border-color: #3b82f6;
+      background: rgba(25, 32, 55, 0.9);
+      transform: translateY(-4px);
     }
 
     .project-card h3 {
       font-size: 1.4rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.7rem;
       font-weight: 600;
+      color: #ebf2ff;
     }
 
     .project-card p {
-      color: #334155;
+      color: #b9c7e0;
       margin-bottom: 1rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .tech-tag {
-      background: #f1f5f9;
+      background: #0f1424;
       padding: 0.2rem 0.7rem;
       border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #0f172a;
+      font-size: 0.7rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 400;
+      color: #9bb9ff;
       display: inline-block;
       margin-right: 0.5rem;
+      margin-top: 0.3rem;
+      border: 0.5px solid #2d3a66;
     }
 
     .learning-note {
-      background: #f1f4f9;
-      border-radius: 1.2rem;
-      padding: 1rem 1.5rem;
+      background: rgba(10, 14, 23, 0.9);
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.6rem;
       margin: 1.5rem 0;
-      border-left: 3px solid #2563eb;
+      border-left: 3px solid #3b82f6;
       font-weight: 500;
+      backdrop-filter: blur(4px);
+      color: #cfdfff;
     }
 
     .contact-links {
-      background: #ffffffdd;
+      background: rgba(12, 15, 27, 0.85);
       backdrop-filter: blur(4px);
       border-radius: 2rem;
-      padding: 1.5rem 2rem;
+      padding: 1.8rem 2rem;
       margin: 2rem 0 1rem;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #2f3a5c;
       text-align: center;
     }
 
@@ -191,42 +220,74 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.8rem;
+      gap: 1.5rem;
       margin-top: 1rem;
     }
 
     .contact-item {
       text-decoration: none;
       font-weight: 500;
-      color: #1e293b;
-      background: #f8fafc;
-      padding: 0.5rem 1.2rem;
+      color: #d1e1ff;
+      background: #0b0f1a;
+      padding: 0.5rem 1.4rem;
       border-radius: 3rem;
       transition: 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      border: 1px solid #e2e8f0;
+      gap: 0.6rem;
+      border: 1px solid #2c3c60;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
     }
 
     .contact-item:hover {
-      background: #2563eb;
+      background: #1e2a48;
       color: white;
-      border-color: #2563eb;
+      border-color: #3b82f6;
+      box-shadow: 0 0 8px rgba(59,130,246,0.3);
     }
 
     footer {
       text-align: center;
       margin-top: 3rem;
       padding-top: 1.5rem;
-      border-top: 1px solid #e2e8f0;
-      color: #475569;
-      font-size: 0.85rem;
+      border-top: 1px solid #20283e;
+      color: #7e8bb0;
+      font-size: 0.8rem;
+    }
+
+    .status-badge {
+      background: #0f172ad9;
+      color: #8bb9fe;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 1.2rem;
+      display: inline-block;
+      border: 0.5px solid #3b4d74;
+      font-family: monospace;
+      margin-top: 0.6rem;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* custom scroll */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0e16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2c3e66;
+      border-radius: 8px;
     }
 
     @media (max-width: 680px) {
       .container {
-        padding: 1.5rem;
+        padding: 1.2rem;
       }
       h1 {
         font-size: 2.2rem;
@@ -236,140 +297,141 @@
       }
     }
 
-    .status-badge {
-      background: #dcfce7;
-      color: #15803d;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.2rem 1rem;
-      display: inline-block;
+    /* glitchy terminal flicker */
+    .glow-text {
+      text-shadow: 0 0 3px rgba(59,130,246,0.3);
+    }
+    .code-block {
+      font-family: 'Fira Code', monospace;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- Hero section / header -->
+  <!-- dark hero section -->
   <div class="hero">
-    <div class="badge">⚡ backend · systems thinking</div>
-    <h1>Ridu · Future Software Engineer</h1>
+    <div class="badge">🌑 ⚡ backend_dark • low_level_aesthetic</div>
+    <h1>Ridu · Future Engineer</h1>
     <div class="tagline">
-      <span class="pill">🐍 Python primary</span>
-      <span class="pill">⚙️ C (low-level focus)</span>
+      <span class="pill">🐍 #Python core</span>
+      <span class="pill">⚙️ C / systems path</span>
       <span class="pill">🗄️ backend architecture</span>
-      <span class="pill">🔧 software engineering</span>
+      <span class="pill">🕸️ software engineering</span>
     </div>
     <p class="intro-text">
-      CSE student passionate about building efficient backend systems, solving algorithmic problems, 
-      and writing clean, maintainable code. Currently deepening my knowledge of <strong>C</strong> to understand 
-      memory management and systems programming. Actively seeking <strong>backend/SWE internship</strong> opportunities.
+      CSE student architecting efficient backend systems, solving algorithmic puzzles, and writing clean Python code. 
+      Currently diving deep into <strong style="color:#8bb9fe;">C</strong> — memory management, pointers, and systems programming. 
+      Actively hunting for <strong>backend/SWE internships</strong> in dark mode only 🌙.
     </p>
-    <div class="status-badge">🎯 Open for Software Engineering Internships (Backend focus)</div>
+    <div class="status-badge">🎯 #openforwork • backend engineering roles (intern / junior)</div>
   </div>
 
-  <!-- developer / engineer object - updated to match backend & C/Python story -->
-  <div class="learning-note">
-    <strong>🧑‍💻 const engineer = {</strong><br/>
-    &nbsp;&nbsp;name: "Ridu",<br/>
-    &nbsp;&nbsp;role: "Aspiring Backend Engineer",<br/>
-    &nbsp;&nbsp;core_languages: ["Python", "C (learning)"],<br/>
-    &nbsp;&nbsp;tools: ["Git", "CLI", "Data Structures", "SQL"],<br/>
-    &nbsp;&nbsp;building: "Backend projects with Python & systems with C",<br/>
-    &nbsp;&nbsp;status: "Open to SWE/Backend Internships"<br/>
-    <strong>};</strong>
+  <!-- engineer const object - dark terminal look -->
+  <div class="learning-note" style="background: #0c1020cc; font-family: 'Fira Code', monospace;">
+    <span style="color: #7aa9ff;">➜ const engineer = {</span><br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">name</span>: <span style="color: #9cd9b4;">"Ridu"</span>,<br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">role</span>: <span style="color: #9cd9b4;">"Aspiring Backend Engineer"</span>,<br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">core_languages</span>: [<span style="color: #9cd9b4;">"Python"</span>, <span style="color: #9cd9b4;">"C (systems focus)"</span>],<br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">toolkit</span>: [<span style="color: #9cd9b4;">"Git"</span>, <span style="color: #9cd9b4;">"CLI"</span>, <span style="color: #9cd9b4;">"DSA"</span>, <span style="color: #9cd9b4;">"SQL"</span>, <span style="color: #9cd9b4;">"Unix"</span>],<br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">building</span>: <span style="color: #9cd9b4;">"backend pipelines + low-level C experiments"</span>,<br/>
+    &nbsp;&nbsp;<span style="color: #c0d4ff;">status</span>: <span style="color: #9cd9b4;">"open for SWE/Backend Internships"</span><br/>
+    <span style="color: #7aa9ff;">};</span>
   </div>
 
-  <!-- Skills section (backend oriented, remove frontend overemphasis) -->
-  <div class="section-title">⚡ Core & growing skills</div>
+  <!-- skills section dark with terminal badges -->
+  <div class="section-title">⚡ core_skills // backend_dna</div>
   <div class="skills-grid">
     <div class="skill-card"><span class="skill-icon">🐍</span> Python (primary)</div>
     <div class="skill-card"><span class="skill-icon">⚙️</span> C (active learning)</div>
     <div class="skill-card"><span class="skill-icon">🧠</span> DSA & Algorithms</div>
-    <div class="skill-card"><span class="skill-icon">🐙</span> Git & GitHub</div>
-    <div class="skill-card"><span class="skill-icon">💻</span> CLI / Scripting</div>
+    <div class="skill-card"><span class="skill-icon">🐙</span> Git/GitHub</div>
+    <div class="skill-card"><span class="skill-icon">💻</span> CLI / Bash</div>
     <div class="skill-card"><span class="skill-icon">🗄️</span> SQL (PostgreSQL/SQLite)</div>
     <div class="skill-card"><span class="skill-icon">🔧</span> Problem Solving</div>
-    <div class="skill-card"><span class="skill-icon">📄</span> Version Control</div>
+    <div class="skill-card"><span class="skill-icon">📐</span> Systems thinking</div>
   </div>
-  <p style="font-size: 0.85rem; margin-top: 0.5rem; color: #334155;">⚡ Currently expanding: backend architectures, Unix fundamentals, and low-level memory concepts in C.</p>
+  <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #8e9fc3; font-family: monospace;">❯ exploring low-level memory, Unix philosophy & backend design patterns</p>
 
-  <!-- Projects section with Backend-detail rewrite -->
-  <div class="section-title">🚀 Projects (backend thinking)</div>
+  <!-- projects area with dark backend flavor -->
+  <div class="section-title">🚀 projects // backend_pipeline</div>
   <div class="projects-grid">
     <div class="project-card">
-      <h3>📚 Student Management System</h3>
-      <p>CRUD web app with local storage — designed data models, implemented record logic and filtering. Explored client-side state management and modular JavaScript. <strong>Next step:</strong> migrate to SQLite + Python backend.</p>
-      <div><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">localStorage</span></div>
+      <h3>📚 Student Management · CRUD core</h3>
+      <p>Local storage CRUD app with data modeling, filtering logic, and client-side state. Architecting next iteration: Python + SQLite backend to replace browser storage, building real persistence layer.</p>
+      <div><span class="tech-tag">JS/HTML</span><span class="tech-tag">localStorage</span><span class="tech-tag">DSA patterns</span></div>
     </div>
     <div class="project-card">
-      <h3>✅ Task Tracker (CLI & Web)</h3>
-      <p>Minimal productivity tool with priority sorting and persistent storage. Practiced modular code, separation of concerns, and task queue logic. Built-in data validation and export feature.</p>
-      <div><span class="tech-tag">JavaScript</span><span class="tech-tag">localStorage API</span><span class="tech-tag">UX logic</span></div>
+      <h3>✅ Task Tracker · CLI edition</h3>
+      <p>Minimal productivity engine with priority queue, data validation, and export. First step toward CLI tools in Python; rewrite in progress to add file-based storage and terminal UI.</p>
+      <div><span class="tech-tag">JavaScript</span><span class="tech-tag">modular logic</span><span class="tech-tag">UX for devs</span></div>
     </div>
     <div class="project-card">
-      <h3>🌐 Personal Portfolio (Backend narrative)</h3>
-      <p>Responsive, semantic HTML/CSS site with focus on maintainability. Includes CLI-inspired contact section and engineer object. Serves as developer brand for backend roles.</p>
-      <div><span class="tech-tag">HTML5</span><span class="tech-tag">CSS Grid/Flex</span><span class="tech-tag">GitHub Pages</span></div>
+      <h3>🌑 Portfolio · dark_engine</h3>
+      <p>Responsive dark-themed portfolio (this site) built with semantic HTML/CSS, terminal aesthetics, and embedded engineer object. Serves as backend-branded digital resume.</p>
+      <div><span class="tech-tag">HTML5/CSS3</span><span class="tech-tag">grid/flex</span><span class="tech-tag">dark UI</span></div>
     </div>
   </div>
 
-  <!-- Additional upcoming projects: backend specific -->
-  <div style="margin: 1rem 0 0.5rem;">
-    <p style="font-weight: 500;">🔨 <strong>What's next (backend engineering track):</strong></p>
-    <ul style="margin-left: 1.5rem; color: #1e293b;">
-      <li>Python CLI tool for log analysis / file organizer</li>
-      <li>SQL-based student database (replace local storage with PostgreSQL)</li>
-      <li>Simple REST API simulation with Flask + in-memory store</li>
-      <li>Low-level exercises in C: pointers, dynamic memory, buffer manipulation</li>
+  <!-- upcoming projects: backend heavy -->
+  <div style="margin: 1.5rem 0 0.5rem; background: #0b0f1c; border-radius: 1.5rem; padding: 1rem 1.5rem; border-left: 2px solid #2c4c8c;">
+    <p style="font-weight: 500; color: #baceff;">➜ <strong>next on roadmap (backend/systems)</strong></p>
+    <ul style="margin-left: 1.2rem; color: #b1c3e6; font-size: 0.9rem;">
+      <li>🐍 Python CLI tool: log analyzer / directory scraper</li>
+      <li>🗄️ SQL-based student database (migrate from browser storage → PostgreSQL)</li>
+      <li>⚡ REST API simulation with Flask + JWT mock</li>
+      <li>⚙️ C exercises: dynamic memory, custom string library, mini shell</li>
     </ul>
   </div>
 
-  <!-- Focus section: future C & Backend learning -->
-  <div class="section-title">📖 Currently focusing</div>
-  <div class="learning-note" style="background: #eef2ff;">
-    🧠 <strong>Data Structures in Python</strong> (advanced) + <strong>C language roadmap</strong><br/>
-    Mastering memory management, pointers, structs, and systems programming fundamentals. <br/>
-    🔍 Seeking <strong>backend engineering internships</strong> where I can apply Python, problem-solving, and grow into systems-level engineering.
+  <!-- focus / learning section - dark and edgy -->
+  <div class="section-title">📖 // current_focus</div>
+  <div class="learning-note" style="background: #0a0e1ae6; border-left: 4px solid #3b82f6;">
+    🧠 <strong style="color:#bdd4ff;">Low-level & high-performance</strong><br/>
+    🔹 Mastering <strong>C language</strong> — pointers, memory allocation, structs, and systems programming fundamentals.<br/>
+    🔹 Data Structures in Python (advanced) + algorithm design for backend scalability.<br/>
+    🔹 Seeking <strong style="color:#f0f3ff;">backend engineering internships</strong> where I can contribute with Python and evolve into systems-level engineering.<br/>
+    <span style="font-family: monospace; font-size: 0.75rem;">❯ “Write code that respects the machine.”</span>
   </div>
 
-  <!-- Let's connect + resume CTA -->
+  <!-- contact and resume cta - dark but vibrant -->
   <div class="contact-links">
-    <h3 style="font-weight: 600; margin-bottom: 0.75rem;">📫 Let's collaborate</h3>
-    <p style="margin-bottom: 1rem;">Interested in backend, systems, or Python engineering roles — open to mentorship & intern positions.</p>
+    <h3 style="font-weight: 600; margin-bottom: 0.5rem; color: #e2edff;">🌙 connect // network</h3>
+    <p style="margin-bottom: 1rem; color: #a1b2db;">backend roles, pythonic conversations, or just tech — I'm open.</p>
     <div class="contact-flex">
       <a href="mailto:fi.redham16@gmail.com" class="contact-item">📧 fi.redham16@gmail.com</a>
-      <a href="https://github.com/redhain" target="_blank" rel="noopener" class="contact-item">🐙 GitHub/redhain</a>
-      <a href="https://linkedin.com/in/faizul-islam-redham" target="_blank" rel="noopener" class="contact-item">🔗 LinkedIn</a>
+      <a href="https://github.com/redhain" target="_blank" rel="noopener" class="contact-item">🐙 github/redhain</a>
+      <a href="https://linkedin.com/in/faizul-islam-redham" target="_blank" rel="noopener" class="contact-item">🔗 linkedin/in/faizul</a>
     </div>
-    <p style="margin-top: 1.2rem; font-size: 0.9rem;">📄 <strong>Resume available upon request</strong> — feel free to reach out for detailed experience & coursework.</p>
+    <p style="margin-top: 1.3rem; font-size: 0.85rem; border-top: 0.5px solid #293456; padding-top: 1rem;">📄 <strong style="font-weight: 500;">resume.pdf ready</strong> — reach out for full experience & projects portfolio.</p>
   </div>
 
   <footer>
-    <span>✦ backend engineering portfolio · built with semantic HTML/CSS · Python & C focused ✦</span><br/>
-    <span style="font-size: 0.75rem;">redhain.github.io/portfolio — always iterating</span>
+    <span>✦ dark_backend_portfolio · python/c engineer trajectory ✦</span><br/>
+    <span style="font-size: 0.7rem; opacity: 0.7;">redhain.github.io/portfolio — compiled with ❯_ dark aesthetic & terminal soul</span>
   </footer>
 </div>
 
-<!-- optional micro-interaction: dynamic engineer log? subtle console greet for recruiter -->
+<!-- console script for dark mystery -->
 <script>
   (function() {
-    // subtle console output for tech-minded visitors / recruiters
-    console.log("%c🔧 Ridu · Backend Engineering Portfolio", "color: #2563eb; font-size: 14px; font-weight: bold;");
-    console.log("%cPython primary · C learner · open to SWE internships", "color: #0f172a; font-size: 12px;");
+    console.log("%c🌙 Ridu · DARK BACKEND MODE ACTIVE", "color: #8bbafe; font-size: 14px; font-weight: bold; font-family: monospace;");
+    console.log("%cPython core · C learner · open for SWE internships (backend/systems)", "color: #9eb3e0; font-size: 12px;");
     const engineer = {
       name: "Ridu",
       role: "Aspiring Backend Engineer",
-      core_languages: ["Python", "C (learning)"],
-      tools: ["Git", "CLI", "Data Structures", "SQL"],
-      building: "Backend projects with Python & systems with C",
-      status: "Open to SWE/Backend Internships"
+      core_languages: ["Python", "C (systems focus)"],
+      toolkit: ["Git", "CLI", "Data Structures", "SQL", "Unix"],
+      building: "Backend projects with Python & low-level C",
+      status: "Open to SWE/Backend Internships",
+      darkMode: true
     };
-    console.debug("📌 Engineer snapshot:", engineer);
-    // optional status indicator (for fun, no visual changes)
-    document.querySelectorAll('.status-badge').forEach(badge => {
-      if(badge.innerText.includes("Open")) badge.setAttribute("title", "Actively looking for backend internships");
-    });
+    console.debug("⚙️ engineer_snapshot:", engineer);
+    // optional interactive effect on status badge
+    const statusElem = document.querySelector('.status-badge');
+    if(statusElem) {
+      statusElem.setAttribute("title", "🚀 actively seeking backend internships — dark mode ready");
+    }
   })();
 </script>
 </body>
